@@ -12,7 +12,8 @@ export const routes: Routes = [
   { 
     path: '', 
     component: DefaultLayoutComponent, 
-    canActivate: [AuthGuard] },
+    canActivate: [AuthGuard] 
+  },
   {
     path: '',
     redirectTo: 'dashboard',
@@ -30,6 +31,7 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
+    canActivate: [AuthGuard] ,
     data: {
       title: 'Home'
     },
@@ -48,7 +50,10 @@ export const routes: Routes = [
         loadChildren: './views/forms/forms.module#FormsModule'
       },
    
- 
+      {
+        path: 'customer',
+        loadChildren: './views/customer/customer.module#CustomerModule'
+      },
       
     ]
   }

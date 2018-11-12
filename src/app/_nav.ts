@@ -38,6 +38,29 @@ export const navItems = [
     ]
   },
   
+   
+  {
+    name: 'Customer',
+    url: '/customer',
+    icon: 'icon-people',
+    children: [
+      {
+        name: 'Add Customer',
+        url: '/customer/add-customer',
+        icon: 'icon-plus'
+      },
+      {
+        name: 'Search Customer',
+        url: '/customer/search-customer',
+        icon: 'icon-magnifier'
+      },     
+       {
+        name: 'Edit Customer',
+        url: '/customer/edit-customer',
+        icon: 'icon-pencil'
+      },
+    ]
+  },
   
 
 ];
