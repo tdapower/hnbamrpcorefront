@@ -1,3 +1,215 @@
-<p>
-  edit-customer works!
-</p>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <form class="form-horizontal" [formGroup]="editCustomerForm">
+          <div class="card-header">
+            <strong>Edit Customer</strong>
+          </div>
+          <div class="card-body">
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="name">Name</label>
+              <div class="col-md-9">
+                <input type="text" id="name" name="name" class="form-control" placeholder="Name" formControlName="Name">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nic">NIC</label>
+              <div class="col-md-9">
+                <input type="text" id="nic" name="nic" class="form-control" placeholder="NIC" formControlName="NIC"
+                  (blur)="ExtractDataFromNIC()">
+              </div>
+            </div>
+
+
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="dob">Date of Birth</label>
+              <div class="col-md-9">
+                <input type="text" id="dob" class="form-control" [minDate]="minDate" [maxDate]="maxDate" #dp="bsDatepicker"
+                  bsDatepicker  [bsConfig]="dpConfig" [(bsValue)]="bsValue" value="{{ bsValue | date:'dd/MM/yyyy' }}" formControlName="DOB">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="age">Age</label>
+              <div class="col-md-9">
+                <input type="text" id="age" name="Age" class="form-control" placeholder="Name" formControlName="Age"
+                [readonly]="true">
+
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="gender">Gender</label>
+              <div class="col-md-9">
+                <select id="gender" name="select1" class="form-control" formControlName="Gender">
+                  <option value="0">Please select</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nationality">Nationality</label>
+              <div class="col-md-9">
+                <select id="nationality" name="select1" class="form-control" formControlName="NationalityId">
+                  <option value="0">Please select</option>
+                  <option *ngFor="let nationality of nationalities" value={{nationality.Id}}>{{nationality.Adjective}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="occupation">Occupation</label>
+              <div class="col-md-9">
+                <input type="text" id="occupation" name="occupation" class="form-control" placeholder="Occupation"
+                  formControlName="Occupation">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="contactNo">Contact No</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-prepend"><span class="input-group-text"><i class="fa fa-phone"></i></span></span>
+                  <input type="text" class="form-control" [textMask]="{mask: phoneMask}" name="ContactNo"
+                    formControlName="ContactNo" id="contactNo">
+                </div>
+                <small class="text-muted">ex. (999) 999-9999</small>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="email">E-Mail</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <input type="email" id="email" name="input2-group1" class="form-control" placeholder="Email"
+                    autocomplete="email" formControlName="Email">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="address">Address</label>
+              <div class="col-md-9">
+                <textarea id="address" name="address" rows="3" class="form-control" placeholder="Address.."
+                  formControlName="Address"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="heightCm">Height</label>
+              <div class=" col-sm-4">
+                <label for="heightCm">cm</label>
+                <input type="number" class="form-control" id="heightCm" formControlName="HeightCm" (blur)="CalculateBMI('HeightCm')">
+              </div>
+              <div class="col-sm-4">
+                <label for="heightInch">inches</label>
+                <input type="number" class="form-control" id="heightInch" formControlName="HeightInch" (blur)="CalculateBMI('HeightInch')">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="weightKg">Weight</label>
+              <div class="col-sm-4">
+                <label for="weightKg">kg</label>
+                <input type="number" class="form-control" id="weightKg" formControlName="WeightKg" (blur)="CalculateBMI('WeightKg')">
+              </div>
+              <div class="col-sm-4">
+                <label for="weightLbs">lbs</label>
+                <input type="number" class="form-control" id="weightLbs" formControlName="WeightLbs" (blur)="CalculateBMI('WeightLbs')">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="bmi">BMI</label>
+              <div class="col-md-3">
+                <input type="number" id="bmi" name="bmi" class="form-control" placeholder="BMI" formControlName="BMI"
+                [readonly]="true">
+
+              </div>
+
+              <div class="col-md-3">
+                <span class="{{bmiClass}}">{{bmiResult}}</span>
+
+              </div>
+
+
+            </div>
+
+
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="previousPolicyAmount">Pre. Policy Amount</label>
+              <div class="col-md-3">
+                <input type="number" id="previousPolicyAmount" name="previousPolicyAmount" class="form-control"
+                  placeholder="" formControlName="PreviousPolicyAmount">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="isAgeAdmitted">Is Age Admitted</label>
+              <div class="col-md-3">
+                <label class="switch switch-label switch-pill switch-primary">
+                  <input type="checkbox" class="switch-input" formControlName="IsAgeAdmitted" id="isAgeAdmitted">
+                  <span class="switch-slider" data-checked="Yes" data-unchecked="No"></span>
+                </label>
+              </div>
+
+              <label class="col-md-3 col-form-label" for="IsSmoker">Is Smoker</label>
+              <div class="col-md-3">
+                <label class="switch switch-label switch-pill switch-primary">
+                  <input type="checkbox" class="switch-input" formControlName="IsSmoker" id="IsSmoker">
+                  <span class="switch-slider" data-checked="Yes" data-unchecked="No"></span>
+                </label>
+              </div>
+
+            </div>
+
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="IsFemaleRebate">Is Female Rebate</label>
+              <div class="col-md-3">
+                <label class="switch switch-label switch-pill switch-primary">
+                  <input type="checkbox" class="switch-input" formControlName="IsFemaleRebate" id="IsFemaleRebate">
+                  <span class="switch-slider" data-checked="Yes" data-unchecked="No"></span>
+                </label>
+              </div>
+
+              <label class="col-md-3 col-form-label" for="IsVIP">Is VIP</label>
+              <div class="col-md-3">
+                <label class="switch switch-label switch-pill switch-primary">
+                  <input type="checkbox" class="switch-input" formControlName="IsVIP" id="IsVIP">
+                  <span class="switch-slider" data-checked="Yes" data-unchecked="No"></span>
+                </label>
+              </div>
+
+            </div>
+
+
+
+
+
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-primary" (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>

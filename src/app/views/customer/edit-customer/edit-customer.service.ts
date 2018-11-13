@@ -2,46 +2,42 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
+
+import { URL_CONST } from '../../../shared/config/url.constants';
 import { Customer } from '../models/customer.model';
 
 
-import { URL_CONST } from '../../../shared/config/url.constants';
 import { CurrentUser } from '../../../shared/config/user';
-import { SearchCustomer } from '../models/searchCustomer.model';
+
 @Injectable({
   providedIn: 'root'
 })
-export class SearchCustomerService {
+export class EditCustomerService {
 
   options: RequestOptions;
 
   constructor(private http: Http) { }
 
-
-
-
-
-  getAllCustomers(): Observable<Customer[]> {
+  getCustomerById(assureId: string): Observable<Customer> {
     let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
     ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
     let options = new RequestOptions({ headers: ReqHeaders });
-    return this.http.get(URL_CONST.URL_PREFIX + 'api/Assure/GetCustomerList', options)
+    return this.http.get(URL_CONST.URL_PREFIX + 'api/Assure/GetCustomer/' + assureId, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
 
-  searchCustomers(searchCustomer: SearchCustomer): Observable<Customer[]> {
+  updateCustomer(customer: Customer): Observable<number> {
 
     let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
     ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
     let options = new RequestOptions({ headers: ReqHeaders });
 
-    return this.http.post(URL_CONST.URL_PREFIX + 'api/Assure/SearchCustomer', searchCustomer, options)
-      .map(this.extractData)
+    return this.http.put(URL_CONST.URL_PREFIX + 'api/Assure/UpdateCustomer', customer, options)
+      .map(success => success.status)
       .catch(this.handleError);
   }
-
 
 
 
@@ -54,5 +50,4 @@ export class SearchCustomerService {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
   }
-
 }

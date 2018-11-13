@@ -10,8 +10,6 @@ import { AddCustomerService } from './add-customer.service';
 import { CustomerService } from './../customer.service';
 import { Nationality } from '../models/nationality.model';
 import { NICExtractedData } from '../models/nICExtractedData.model';
-import { NG_MODEL_WITH_FORM_CONTROL_WARNING } from '@angular/forms/src/directives';
-import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-add-customer',
@@ -134,44 +132,44 @@ export class AddCustomerComponent implements OnInit {
   }
 
 
-  onChanges(): void {
-    this.addCustomerForm.get('HeightCm').valueChanges.subscribe(val => {
-      if (val != 0) {
-        try {
-          this.addCustomerForm.patchValue({
-            HeightInch: Number((val / 2.54).toFixed(2))
-          });
-        } catch (e) {
-        }
+  // onChanges(): void {
+  //   this.addCustomerForm.get('HeightCm').valueChanges.subscribe(val => {
+  //     if (val != 0) {
+  //       try {
+  //         this.addCustomerForm.patchValue({
+  //           HeightInch: Number((val / 2.54).toFixed(2))
+  //         });
+  //       } catch (e) {
+  //       }
 
-        if (this.addCustomerForm.value.WeightKg != 0) {
-          this.addCustomerForm.patchValue({
-            BMI: this.customerService.calculateBMI(val, this.addCustomerForm.value.WeightKg)
-          });
-        }
-      }
-    });
+  //       if (this.addCustomerForm.value.WeightKg != 0) {
+  //         this.addCustomerForm.patchValue({
+  //           BMI: this.customerService.calculateBMI(val, this.addCustomerForm.value.WeightKg)
+  //         });
+  //       }
+  //     }
+  //   });
 
-    this.addCustomerForm.get('WeightKg').valueChanges.subscribe(val => {
-      if (val != 0) {
-        this.addCustomerForm.patchValue({
-          WeightLbs: Number((val * 2.20462).toFixed(2))
-        });
-        if (this.addCustomerForm.value.HeightCm != 0) {
-          this.addCustomerForm.patchValue({
-            BMI: this.customerService.calculateBMI(this.addCustomerForm.value.HeightCm, val)
-          });
-        }
-      }
-    });
-
-
+  //   this.addCustomerForm.get('WeightKg').valueChanges.subscribe(val => {
+  //     if (val != 0) {
+  //       this.addCustomerForm.patchValue({
+  //         WeightLbs: Number((val * 2.20462).toFixed(2))
+  //       });
+  //       if (this.addCustomerForm.value.HeightCm != 0) {
+  //         this.addCustomerForm.patchValue({
+  //           BMI: this.customerService.calculateBMI(this.addCustomerForm.value.HeightCm, val)
+  //         });
+  //       }
+  //     }
+  //   });
 
 
-    //  14 - 9.50am
-    //hr - Nichloa
 
-  }
+
+  //   //  14 - 9.50am
+  //   //hr - Nichloa
+
+  // }
 
   CalculateBMI(parameter) {
     try {

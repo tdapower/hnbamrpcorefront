@@ -13,7 +13,7 @@ const routes: Routes = [
         loadChildren: './add-customer/add-customer.module#AddCustomerModule'
       },
       {
-        path: 'edit-customer',
+        path: 'edit-customer/:id',
         loadChildren: './edit-customer/edit-customer.module#EditCustomerModule'
       },
       {

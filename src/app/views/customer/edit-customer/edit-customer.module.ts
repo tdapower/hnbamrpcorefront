@@ -1,33 +1,29 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
-// Angular 2 Input Mask
-import { TextMaskModule } from 'angular2-text-mask';
-
-// Timepicker
-import { TimepickerModule } from 'ngx-bootstrap';
-
-// Datepicker
-import { BsDatepickerModule } from 'ngx-bootstrap';
-
-// Ng2-select
-import { SelectModule } from 'ng-select';
-
-// Routing
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { CustomerModule } from '../customer.module';
-import { EditCustomerComponent } from './edit-customer.component';
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { SelectModule } from 'ng-select';
+import { TextMaskModule } from 'angular2-text-mask';
+import { ToasterModule, ToasterService} from 'angular2-toaster/angular2-toaster';
 import { EditCustomerRoutingModule } from './edit-customer-routing.module';
+import { EditCustomerComponent } from './edit-customer.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    CustomerModule,
     EditCustomerRoutingModule,
-    TextMaskModule,
-    TimepickerModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    CustomerModule,
+    CollapseModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    SelectModule
+    SelectModule,
+    TextMaskModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToasterModule
   ],
   declarations: [
     EditCustomerComponent
