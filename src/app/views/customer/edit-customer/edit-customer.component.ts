@@ -1,3 +1,4 @@
+declare var require: any;
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
@@ -165,7 +166,13 @@ export class EditCustomerComponent implements OnInit {
 
         this.initializeForm();
         // this.router.navigate(['list-user']);
-      });
+
+      }
+        ,
+        errorCode => {
+          this.showToasterMessage('error', 'Notification', 'Error saving customer!');
+        }
+      );
   }
 
   getNationalities() {

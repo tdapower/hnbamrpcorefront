@@ -1,0 +1,20 @@
+export class Workflowjob {
+    JobNo : string ;
+    ProposalNo : string ;
+    LifeAssure1NIC : string ;
+    LifeAssure2NIC : string ;
+    BankCode : string ;
+    CreatedDate : string ;
+    CreatedUserCode : string ;
+    AssignedUserCode : string ;
+    ProposalNoUpdatedDate : string ;
+    IsCancelled : number ;
+    BrokerCode : string ;
+    IsFastTrack : number ;
+    ProposalModeId : number ;
+    WorkflowType : string ;
+    BusinessChannelId : number ;
+    IsFreeCoverLimitProposal : number ;
+    BankId : number ;
+    BankBranchId : number ;
+}

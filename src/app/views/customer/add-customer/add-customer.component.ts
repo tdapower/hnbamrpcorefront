@@ -1,3 +1,4 @@
+declare var require: any;
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
@@ -40,6 +41,7 @@ export class AddCustomerComponent implements OnInit {
 
   NICExtractedData: NICExtractedData = null;
 
+   
   bmiClass: string;
   bmiResult: string;
 

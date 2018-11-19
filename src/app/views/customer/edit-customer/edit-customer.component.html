@@ -29,7 +29,8 @@
               <label class="col-md-3 col-form-label" for="dob">Date of Birth</label>
               <div class="col-md-9">
                 <input type="text" id="dob" class="form-control" [minDate]="minDate" [maxDate]="maxDate" #dp="bsDatepicker"
-                  bsDatepicker  [bsConfig]="dpConfig" [(bsValue)]="bsValue" value="{{ bsValue | date:'dd/MM/yyyy' }}" formControlName="DOB">
+                  bsDatepicker [bsConfig]="dpConfig" [(bsValue)]="bsValue" value="{{ bsValue | date:'dd/MM/yyyy' }}"
+                  formControlName="DOB">
               </div>
             </div>
 
@@ -37,7 +38,7 @@
               <label class="col-md-3 col-form-label" for="age">Age</label>
               <div class="col-md-9">
                 <input type="text" id="age" name="Age" class="form-control" placeholder="Name" formControlName="Age"
-                [readonly]="true">
+                  [readonly]="true">
 
               </div>
             </div>
@@ -131,7 +132,7 @@
               <label class="col-md-3 col-form-label" for="bmi">BMI</label>
               <div class="col-md-3">
                 <input type="number" id="bmi" name="bmi" class="form-control" placeholder="BMI" formControlName="BMI"
-                [readonly]="true">
+                  [readonly]="true">
 
               </div>
 
@@ -209,7 +210,73 @@
 
     </div>
 
-  </div>
-</div>
 
-<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Policies of Customer</strong>
+        </div>
+        <div class="card-body">
+         
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Username</th>
+                          <th>Date registered</th>
+                          <th>Role</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Samppa Nori</td>
+                          <td>2012/01/01</td>
+                          <td>Member</td>
+                          <td>
+                            <span class="badge badge-success">Active</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Estavan Lykos</td>
+                          <td>2012/02/01</td>
+                          <td>Staff</td>
+                          <td>
+                            <span class="badge badge-danger">Banned</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Chetan Mohamed</td>
+                          <td>2012/02/01</td>
+                          <td>Admin</td>
+                          <td>
+                            <span class="badge badge-secondary">Inactive</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Derick Maximinus</td>
+                          <td>2012/03/01</td>
+                          <td>Member</td>
+                          <td>
+                            <span class="badge badge-warning">Pending</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Friderik Dávid</td>
+                          <td>2012/01/21</td>
+                          <td>Staff</td>
+                          <td>
+                            <span class="badge badge-success">Active</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+              
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <toaster-container [toasterconfig]="toasterconfig"></toaster-container>

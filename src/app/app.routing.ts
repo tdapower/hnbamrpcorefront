@@ -54,7 +54,14 @@ export const routes: Routes = [
         path: 'customer',
         loadChildren: './views/customer/customer.module#CustomerModule'
       },
-      
+      {
+        path: 'hospital',
+        loadChildren: './views/hospital/hospital.module#HospitalModule'
+      },
+      {
+        path: 'workflowjob',
+        loadChildren: './views/workflowjob/workflowjob.module#WorkflowjobModule'
+      },
     ]
   }
 ];
