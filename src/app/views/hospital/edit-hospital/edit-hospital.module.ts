@@ -7,15 +7,15 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
 import { SelectModule } from 'ng-select';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ToasterModule, ToasterService} from 'angular2-toaster/angular2-toaster';
-import { AddHospitalRoutingModule } from './add-hospital-routing.module';
 import { HospitalModule } from '../hospital.module';
-import { AddHospitalComponent } from './add-hospital.component';
+import { EditHospitalRoutingModule } from './edit-hospital-routing.module';
+import { EditHospitalComponent } from './edit-hospital.component';
 
 
 
 @NgModule({
   imports: [
-    AddHospitalRoutingModule,
+    EditHospitalRoutingModule,
     BsDropdownModule.forRoot(),
     HospitalModule,
     CollapseModule.forRoot(),
@@ -28,7 +28,7 @@ import { AddHospitalComponent } from './add-hospital.component';
     ToasterModule
   ],
   declarations: [
-    AddHospitalComponent
+    EditHospitalComponent
   ]
 })
-export class AddHospitalModule { }
+export class EditHospitalModule { }

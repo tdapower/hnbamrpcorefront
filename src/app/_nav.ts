@@ -71,6 +71,11 @@ export const navItems = [
         name: 'Add Hospital',
         url: '/hospital/add-hospital',
         icon: 'icon-plus'
+      },
+      {
+        name: 'Search Hospital',
+        url: '/hospital/search-hospital',
+        icon: 'icon-magnifier'
       }
     ]
   },

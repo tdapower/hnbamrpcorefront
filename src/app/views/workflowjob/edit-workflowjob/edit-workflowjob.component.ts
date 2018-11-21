@@ -211,12 +211,12 @@ console.log('this.workflowJobForm.valu   '+ JSON.stringify(this.workflowJobForm.
   }
 
   getPendingJobsOfUsers() {
-    this.commonFunctionsService.getPendingJobsOfUsers()
-      .subscribe(
-        data => {
-          this.data = data;
-        },
-        errorCode => this.showToasterMessage('error', 'Notification', 'Error Loading Pending jobs of User!'));
+    // this.commonFunctionsService.getPendingJobsOfUsers()
+    //   .subscribe(
+    //     data => {
+    //       this.data = data;
+    //     },
+    //     errorCode => this.showToasterMessage('error', 'Notification', 'Error Loading Pending jobs of User!'));
   }
 
 

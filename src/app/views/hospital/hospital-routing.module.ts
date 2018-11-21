@@ -11,7 +11,15 @@ const routes: Routes = [
       {
         path: 'add-hospital',
         loadChildren: './add-hospital/add-hospital.module#AddHospitalModule'
-      }
+      },
+      {
+        path: 'search-hospital',
+        loadChildren: './search-hospital/search-hospital.module#SearchHospitalModule'
+      },
+      {
+        path: 'edit-hospital/:seqId',
+        loadChildren: './edit-hospital/edit-hospital.module#EditHospitalModule'
+      },
     ]
   }
 ];
@@ -20,4 +28,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HospitalRoutingModule {}
+export class HospitalRoutingModule { }
+
