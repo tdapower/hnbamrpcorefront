@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { CustomerModule } from '../customer.module';
-import { BsDatepickerModule } from 'ngx-bootstrap';
 import { SelectModule } from 'ng-select';
 
 import { DataTableModule } from 'angular2-datatable';
-import { TextMaskModule } from 'angular2-text-mask';
 import { ToasterModule, ToasterService} from 'angular2-toaster/angular2-toaster';
-import { SearchCustomerComponent } from './search-customer.component';
-import { SearchCustomerRoutingModule } from './search-customer-routing.module';
 import { HttpModule } from '@angular/http';
-import { LaddaModule } from 'angular2-ladda';
+import { SearchProposalComponent } from './search-proposal.component';
+import { SearcProposalRoutingModule } from './search-proposal-routing.module';
+import { ProposalModule } from '../proposal.module';
 
 @NgModule({
   imports: [
-    SearchCustomerRoutingModule,
-    CustomerModule,
+    
+    SearcProposalRoutingModule,
+    ProposalModule,
     CollapseModule.forRoot(),
     SelectModule,
     CommonModule,
@@ -26,11 +23,8 @@ import { LaddaModule } from 'angular2-ladda';
     ReactiveFormsModule,
     ToasterModule,
     DataTableModule,
-    HttpModule,
-    LaddaModule
+    HttpModule
   ],
-  declarations: [
-    SearchCustomerComponent
-  ]
+  declarations: [SearchProposalComponent]
 })
-export class SearchCustomerModule { }
+export class SearchProposalModule { }

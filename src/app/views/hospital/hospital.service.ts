@@ -3,16 +3,14 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
 
-import { URL_CONST } from '../../../shared/config/url.constants';
-import { Customer } from '../models/customer.model';
 
-
-import { CurrentUser } from '../../../shared/config/user';
-
+import { URL_CONST } from '../../shared/config/url.constants';
+import { CurrentUser } from '../../shared/config/user';
+import { Hospital } from './models/hospital.model';
 @Injectable({
   providedIn: 'root'
 })
-export class AddCustomerService {
+export class HospitalService {
 
   options: RequestOptions;
 
@@ -20,27 +18,29 @@ export class AddCustomerService {
 
 
 
-  createCustomer(customer: Customer): Observable<number> {
 
-    console.log('CurrentUser = ' + CurrentUser.USER_AUTH_TOKEN);
+  getAllHospitals(): Observable<Hospital[]> {
 
     let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
     ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
     let options = new RequestOptions({ headers: ReqHeaders });
 
-    console.log(customer.toString());
-
-    return this.http.post(URL_CONST.URL_PREFIX + 'api/Assure/AddCustomer', customer, options)
-      .map(success => success.status)
-      .timeout(60000)
+    return this.http.get(URL_CONST.URL_PREFIX + 'api/Hospital/GetHospitals', options)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
 
 
 
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body;
+  }
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
   }
+
 }

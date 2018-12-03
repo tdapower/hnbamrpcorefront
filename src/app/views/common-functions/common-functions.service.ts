@@ -26,6 +26,7 @@ export class CommonFunctionsService {
 
     return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetAllBanks', options)
       .map(this.extractData)
+      .timeout(60000)
       .catch(this.handleError);
   }
 
@@ -37,9 +38,9 @@ export class CommonFunctionsService {
 
     return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetAllBankBranches', options)
       .map(this.extractData)
+      .timeout(60000)
       .catch(this.handleError);
   }
-
 
   getBankBranchByBankId(bankId) {
     let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
@@ -48,8 +49,33 @@ export class CommonFunctionsService {
 
     return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetBankBranchesOfBank/' + bankId, options)
       .map(this.extractData)
+      .timeout(60000)
       .catch(this.handleError);
   }
+
+  
+  getHnbaBranch() {
+    let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
+    ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
+    let options = new RequestOptions({ headers: ReqHeaders });
+
+    return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetAllHnbaBranches', options)
+      .map(this.extractData)
+      .timeout(60000)
+      .catch(this.handleError);
+  }
+  
+  getLoanType() {
+    let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
+    ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
+    let options = new RequestOptions({ headers: ReqHeaders });
+
+    return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetAllLoanTypes', options)
+      .map(this.extractData)
+      .timeout(60000)
+      .catch(this.handleError);
+  }
+
 
   getBroker() {
     let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
@@ -57,36 +83,51 @@ export class CommonFunctionsService {
     let options = new RequestOptions({ headers: ReqHeaders });
     return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetAllBrokers', options)
       .map(this.extractData)
+      .timeout(60000)
       .catch(this.handleError);
   }
 
 
- getBusinessChannels() {
+  getBusinessChannels() {
     let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
     ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
     let options = new RequestOptions({ headers: ReqHeaders });
     return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetAllBusinessChannels', options)
       .map(this.extractData)
+      .timeout(60000)
       .catch(this.handleError);
   }
 
 
- getModeOfProposals() {
+  getModeOfProposals() {
     let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
     ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
     let options = new RequestOptions({ headers: ReqHeaders });
     return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetAllModeOfProposals', options)
       .map(this.extractData)
+      .timeout(60000)
       .catch(this.handleError);
   }
 
 
- getMRPUsers() {
+  getMRPUsers() {
     let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
     ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
     let options = new RequestOptions({ headers: ReqHeaders });
     return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetAllMRPUsers', options)
       .map(this.extractData)
+      .timeout(60000)
+      .catch(this.handleError);
+  }
+
+
+  getAllSignPersons() {
+    let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
+    ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
+    let options = new RequestOptions({ headers: ReqHeaders });
+    return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetAllSignPersons', options)
+      .map(this.extractData)
+      .timeout(60000)
       .catch(this.handleError);
   }
 
@@ -97,6 +138,7 @@ export class CommonFunctionsService {
     let options = new RequestOptions({ headers: ReqHeaders });
     return this.http.get(URL_CONST.URL_PREFIX + 'api/Common/GetPendingJobsOfUsers', options)
       .map(this.extractData)
+      .timeout(60000)
       .catch(this.handleError);
   }
 

@@ -10,6 +10,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
 import { SelectModule } from 'ng-select';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ToasterModule, ToasterService} from 'angular2-toaster/angular2-toaster';
+import { LaddaModule } from 'angular2-ladda';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ToasterModule, ToasterService} from 'angular2-toaster/angular2-toaster'
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ToasterModule
+    ToasterModule,
+    LaddaModule
   ],
   declarations: [
     AddCustomerComponent

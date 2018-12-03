@@ -18,7 +18,8 @@ import { NICExtractedData } from '../models/nICExtractedData.model';
   styleUrls: ['./add-customer.component.scss',
     '../../../../scss/vendors/bs-datepicker/bs-datepicker.scss',
     '../../../../scss/vendors/ng-select/ng-select.scss',
-    '../../../../scss/vendors/toastr/toastr.scss'
+    '../../../../scss/vendors/toastr/toastr.scss',
+    '../../../../../node_modules/ladda/dist/ladda-themeless.min.css'
   ],
   encapsulation: ViewEncapsulation.None,
   providers: [ToasterService]
@@ -34,14 +35,13 @@ export class AddCustomerComponent implements OnInit {
       timeout: 5000
     });
 
+    
+  isLoading: boolean = false;
+
   addCustomerForm: FormGroup;
-
-
   nationalities: Nationality[];
-
   NICExtractedData: NICExtractedData = null;
 
-   
   bmiClass: string;
   bmiResult: string;
 
@@ -104,11 +104,9 @@ export class AddCustomerComponent implements OnInit {
   }
 
 
-
-
-
   onSubmit() {
 
+    this.isLoading = true;
 
     var moment = require('moment');
     var formattedDob = moment(this.addCustomerForm.value.DOB).format('DD/MM/YYYY');
@@ -126,10 +124,18 @@ export class AddCustomerComponent implements OnInit {
 
     this.addCustomerService.createCustomer(this.addCustomerForm.value)
       .subscribe(data => {
+        this.isLoading = false;
         this.showToasterMessage('success', 'Notification', 'Customer successfully saved!');
 
         this.initializeForm();
         // this.router.navigate(['list-user']);
+      },
+      (err) => {
+        console.log(err);
+
+        this.isLoading = false;
+        
+        this.showToasterMessage('error', 'Notification', 'Error saving Customer!');
       });
   }
 

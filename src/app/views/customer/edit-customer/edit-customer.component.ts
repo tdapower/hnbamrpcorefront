@@ -20,7 +20,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit-customer.component.scss',
     '../../../../scss/vendors/bs-datepicker/bs-datepicker.scss',
     '../../../../scss/vendors/ng-select/ng-select.scss',
-    '../../../../scss/vendors/toastr/toastr.scss'
+    '../../../../scss/vendors/toastr/toastr.scss',
+    '../../../../../node_modules/ladda/dist/ladda-themeless.min.css'
   ],
   encapsulation: ViewEncapsulation.None,
   providers: [ToasterService]
@@ -38,12 +39,10 @@ export class EditCustomerComponent implements OnInit {
   public dpConfig: Partial<BsDatepickerConfig> = new BsDatepickerConfig();
 
 
+  isLoading: boolean = false;
   editCustomerForm: FormGroup;
 
-
-
   nationalities: Nationality[];
-
   NICExtractedData: NICExtractedData = null;
 
   bmiClass: string;
@@ -158,10 +157,12 @@ export class EditCustomerComponent implements OnInit {
         IsVIP: this.editCustomerForm.value.IsVIP == true ? 1 : 0
       });
 
+    this.isLoading = true;
 
 
     this.editCustomerService.updateCustomer(this.editCustomerForm.value)
       .subscribe(data => {
+        this.isLoading = false;
         this.showToasterMessage('success', 'Notification', 'Customer successfully updated!');
 
         this.initializeForm();
@@ -170,6 +171,8 @@ export class EditCustomerComponent implements OnInit {
       }
         ,
         errorCode => {
+
+          this.isLoading = false;
           this.showToasterMessage('error', 'Notification', 'Error saving customer!');
         }
       );

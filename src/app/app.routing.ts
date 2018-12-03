@@ -61,6 +61,14 @@ export const routes: Routes = [
       {
         path: 'workflowjob',
         loadChildren: './views/workflowjob/workflowjob.module#WorkflowjobModule'
+      }, 
+      {
+        path: 'medicalletter',
+        loadChildren: './views/medicalletter/medicalletter.module#MedicalletterModule'
+      }, 
+       {
+        path: 'proposal',
+        loadChildren: './views/proposal/proposal.module#ProposalModule'
       },
     ]
   }

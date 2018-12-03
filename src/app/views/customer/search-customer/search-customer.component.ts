@@ -18,13 +18,10 @@ import { Http } from '@angular/http';
 })
 export class SearchCustomerComponent implements OnInit {
 
-
-
   searchCustomer: SearchCustomer;
   searchCustomerForm: FormGroup;
 
   public data;
-
 
   constructor(private http: Http, private searchCustomerService: SearchCustomerService, toasterService: ToasterService,
     private formBuilder: FormBuilder) {
@@ -38,15 +35,9 @@ export class SearchCustomerComponent implements OnInit {
       timeout: 1000
     });
 
-
-
   ngOnInit() {
-
-    // this.getAllCustomers();
-
     this.initializeForm();
   }
-
 
   initializeForm() {
     this.searchCustomerForm = this.formBuilder.group({
@@ -54,8 +45,6 @@ export class SearchCustomerComponent implements OnInit {
       NIC: [''],
       Address: ['']
     });
-
-
   }
 
   public toInt(num: string) {
@@ -79,14 +68,6 @@ export class SearchCustomerComponent implements OnInit {
 
   }
 
-
-
-  getAllCustomers() {
-    this.searchCustomerService.getAllCustomers()
-      .subscribe(
-        data => this.data = data,
-        errorCode => this.showToasterMessage('error', 'Notification', 'Error Loading Customers!'));
-  }
 
 
 

@@ -79,7 +79,6 @@ export const navItems = [
       }
     ]
   },
-
   {
     name: 'Workflow Job',
     url: '/workflowjob',
@@ -100,31 +99,36 @@ export const navItems = [
       //   url: '/workflowjob/edit-workflowjob',
       //   icon: 'icon-pencil'
       // },
+      
     ]
   },
-
-
-  // {
-  //   name: 'Workflow Job',
-  //   url: '/workflow-job',
-  //   icon: 'icon-support',
-  //   children: [
-  //     {
-  //       name: 'Add Job',
-  //       url: '/workflow-job/add-workflow-job',
-  //       icon: 'icon-plus'
-  //     },
-  //     {
-  //       name: 'Search Job',
-  //       url: '/workflow-job/search-workflow-job',
-  //       icon: 'icon-magnifier'
-  //     },     
-  //      {
-  //       name: 'Edit Job',
-  //       url: '/workflow-job/edit-workflow-job',
-  //       icon: 'icon-pencil'
-  //     },
-  //   ]
-  // },
+  
+  {
+    name: 'Medical Letter',
+    url: '/medicalletter',
+    icon: 'icon-people',
+    children: [
+      {
+        name: 'Generate',
+        url: '/medicalletter/generate-medicalletter',
+        icon: 'icon-plus'
+      }
+    ]
+  }
+ 
+  ,
+  
+  {
+    name: 'Proposal',
+    url: '/proposal',
+    icon: 'icon-people',
+    children: [
+      {
+        name: 'Search Proposal',
+        url: '/proposal/search-proposal',
+        icon: 'icon-plus'
+      }
+    ]
+  }
 
 ];

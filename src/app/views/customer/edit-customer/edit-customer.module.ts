@@ -10,6 +10,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { ToasterModule, ToasterService} from 'angular2-toaster/angular2-toaster';
 import { EditCustomerRoutingModule } from './edit-customer-routing.module';
 import { EditCustomerComponent } from './edit-customer.component';
+import { LaddaModule } from 'angular2-ladda';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { EditCustomerComponent } from './edit-customer.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ToasterModule
+    ToasterModule,
+    LaddaModule
   ],
   declarations: [
     EditCustomerComponent
