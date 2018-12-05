@@ -12,7 +12,8 @@ export const routes: Routes = [
   { 
     path: '', 
     component: DefaultLayoutComponent, 
-    canActivate: [AuthGuard] },
+    canActivate: [AuthGuard] 
+  },
   {
     path: '',
     redirectTo: 'dashboard',
@@ -30,6 +31,7 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
+    canActivate: [AuthGuard] ,
     data: {
       title: 'Home'
     },
@@ -48,8 +50,26 @@ export const routes: Routes = [
         loadChildren: './views/forms/forms.module#FormsModule'
       },
    
- 
-      
+      {
+        path: 'customer',
+        loadChildren: './views/customer/customer.module#CustomerModule'
+      },
+      {
+        path: 'hospital',
+        loadChildren: './views/hospital/hospital.module#HospitalModule'
+      },
+      {
+        path: 'workflowjob',
+        loadChildren: './views/workflowjob/workflowjob.module#WorkflowjobModule'
+      }, 
+      {
+        path: 'medicalletter',
+        loadChildren: './views/medicalletter/medicalletter.module#MedicalletterModule'
+      }, 
+       {
+        path: 'proposal',
+        loadChildren: './views/proposal/proposal.module#ProposalModule'
+      },
     ]
   }
 ];

@@ -1,0 +1,110 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <form class="form-horizontal" [formGroup]="searchWorkflowjobForm">
+          <div class="card-header">
+            <strong>Search Workflow Jobs</strong>
+          </div>
+          <div class="card-body">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-email">Job No</label>
+              <div class="col-md-9">
+                <input type="text" id="JobNo" name="JobNo" class="form-control" formControlName="JobNo">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-password">Proposal No</label>
+              <div class="col-md-9">
+                <input type="text" id="ProposalNo" name="ProposalNo" class="form-control" formControlName="ProposalNo">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-password">Life Assure 1 NIC</label>
+              <div class="col-md-9">
+                <input type="text" id="LifeAssure1NIC" name="LifeAssure1NIC" class="form-control" formControlName="LifeAssure1NIC">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-password">Life Assure 2 NIC</label>
+              <div class="col-md-9">
+                <input type="text" id="LifeAssure2NIC" name="LifeAssure2NIC" class="form-control" formControlName="LifeAssure2NIC">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nationality">Assigned To</label>
+              <div class="col-md-9">
+                <select id="AssignedUserCode" name="AssignedUserCode" class="form-control" formControlName="AssignedUserCode">
+                  <option value="0">Please select</option>
+                  <option *ngFor="let mRPUser of mRPUsers" value={{mRPUser.UserCode}}>{{mRPUser.UserName}}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-primary" (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i> Search</button>
+            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Seacrh Result
+        </div>
+        <div class="card-body">
+          <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
+
+
+
+
+
+            <thead>
+              <tr>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="JobNo">Job No</mfDefaultSorter>
+                </th>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="ProposalNo">Proposal No</mfDefaultSorter>
+                </th>
+                <th style="width: 25%">
+                  <mfDefaultSorter by="LifeAssure1NIC">Life Assure 1 NIC</mfDefaultSorter>
+                </th>
+                <th style="width: 25%">
+                  <mfDefaultSorter by="LifeAssure2NIC">Life Assure 2 NIC</mfDefaultSorter>
+                </th>
+                <th style="width: 10%">
+                  Edit
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let workflowjob of mf.data">
+                <td>{{ workflowjob.JobNo }}</td>
+                <td>{{ workflowjob.ProposalNo }}</td>
+                <td>{{ workflowjob.LifeAssure1NIC }}</td>
+                <td>{{ workflowjob.LifeAssure2NIC }}</td>
+                <td><a [routerLink]="['edit-workflowjob', workflowjob.JobNo]" class="btn btn-primary">Edit</a></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

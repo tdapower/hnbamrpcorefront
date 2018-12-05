@@ -1,0 +1,172 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <form class="form-horizontal" [formGroup]="workflowJobForm">
+          <div class="card-header">
+            <strong>Add Workflow Job</strong>
+          </div>
+          <div class="card-body">
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="name">Job Number</label>
+              <div class="col-md-9">
+                <input type="text" id="JobNo" name="JobNo" class="form-control" placeholder="Job Number"
+                  formControlName="JobNo"  [readonly]="true">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="name">Proposal Number</label>
+              <div class="col-md-9">
+                <input type="text" id="ProposalNo" name="ProposalNo" class="form-control" placeholder="Proposal Number"
+                  formControlName="ProposalNo">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="name">NIC 1</label>
+              <div class="col-md-9">
+                <input type="text" id="LifeAssure1NIC" name="LifeAssure1NIC" class="form-control" placeholder="Life Assure 1 NIC"
+                  formControlName="LifeAssure1NIC">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="name">NIC 2</label>
+              <div class="col-md-9">
+                <input type="text" id="LifeAssure2NIC" name="LifeAssure2NIC" class="form-control" placeholder="Life Assure 2 NIC"
+                  formControlName="LifeAssure2NIC">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nationality">Bank</label>
+              <div class="col-md-9">
+                <select id="BankId" name="BankId" class="form-control" formControlName="BankId">
+                  <option value="0">Please select</option>
+                  <option *ngFor="let bank of banks" value={{bank.BankId}}>{{bank.BankName}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nationality">Bank Branch</label>
+              <div class="col-md-9">
+                <select id="BankBranchId" name="BankBranchId" class="form-control" formControlName="BankBranchId">
+                  <option value="0">Please select</option>
+                  <option *ngFor="let bankBranch of bankBranches" value={{bankBranch.BankBranchId}}>{{bankBranch.BankBranchName}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nationality">Assigned To</label>
+              <div class="col-md-9">
+                <select id="AssignedUserCode" name="AssignedUserCode" class="form-control" formControlName="AssignedUserCode">
+                  <option value="0">Please select</option>
+                  <option *ngFor="let mRPUser of mRPUsers" value={{mRPUser.UserCode}}>{{mRPUser.UserName}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nationality">Broker Code</label>
+              <div class="col-md-9">
+                <select id="BrokerCode" name="BrokerCode" class="form-control" formControlName="BrokerCode">
+                  <option value="0">Please select</option>
+                  <option *ngFor="let broker of brokers" value={{broker.BrokerId}}>{{broker.BrokerName}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nationality">Mode of Proposal</label>
+              <div class="col-md-9">
+                <select id="ProposalModeId" name="ProposalModeId" class="form-control" formControlName="ProposalModeId">
+                  <option value="0">Please select</option>
+                  <option *ngFor="let modeOfProposal of modeOfProposals" value={{modeOfProposal.ProposalModeId}}>{{modeOfProposal.ProposalModeName}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nationality">Business Channel</label>
+              <div class="col-md-9">
+                <select id="BusinessChannelId" name="BusinessChannelId" class="form-control" formControlName="BusinessChannelId">
+                  <option value="0">Please select</option>
+                  <option *ngFor="let businessChannel of businessChannels" value={{businessChannel.BusinessChannelId}}>{{businessChannel.BusinessChannelName}}</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="isAgeAdmitted">Is Fast Track Job</label>
+              <div class="col-md-3">
+                <label class="switch switch-label switch-pill switch-primary">
+                  <input type="checkbox" class="switch-input" formControlName="IsFastTrack" id="IsFastTrack">
+                  <span class="switch-slider" data-checked="Yes" data-unchecked="No"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="isAgeAdmitted">Is Free Cover Limit Proposal</label>
+              <div class="col-md-3">
+                <label class="switch switch-label switch-pill switch-primary">
+                  <input type="checkbox" class="switch-input" formControlName="IsFreeCoverLimitProposal" id="IsFreeCoverLimitProposal">
+                  <span class="switch-slider" data-checked="Yes" data-unchecked="No"></span>
+                </label>
+              </div>
+            </div>
+
+
+
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-primary" (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Current Pending Jobs of Users</strong>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="20">
+            <thead>
+              <tr>
+                <th style="width: 70%">
+                  <mfDefaultSorter by="UserName">Name</mfDefaultSorter>
+                </th>
+                <th style="width: 30%">
+                  <mfDefaultSorter by="JobCount">Job Count</mfDefaultSorter>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let userPendingJob of mf.data">
+                <td>{{ userPendingJob.UserName }}</td>
+                <td>{{ userPendingJob.JobCount }}</td>
+               
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
