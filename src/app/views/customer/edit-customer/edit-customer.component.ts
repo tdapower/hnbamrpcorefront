@@ -103,6 +103,7 @@ export class EditCustomerComponent implements OnInit {
           IsSmoker: res.IsSmoker,
           IsFemaleRebate: res.IsFemaleRebate,
           IsVIP: res.IsVIP,
+          IsPoliticallyExposed: res.IsPoliticallyExposed,
           RegisterDate: res.RegisterDate,
 
 
@@ -138,6 +139,7 @@ export class EditCustomerComponent implements OnInit {
       IsSmoker: [0],
       IsFemaleRebate: [0],
       IsVIP: [0],
+      IsPoliticallyExposed: [0],
       RegisterDate: ['']
     });
 
@@ -154,7 +156,8 @@ export class EditCustomerComponent implements OnInit {
         IsAgeAdmitted: this.editCustomerForm.value.IsAgeAdmitted == true ? 1 : 0,
         IsSmoker: this.editCustomerForm.value.IsSmoker == true ? 1 : 0,
         IsFemaleRebate: this.editCustomerForm.value.IsFemaleRebate == true ? 1 : 0,
-        IsVIP: this.editCustomerForm.value.IsVIP == true ? 1 : 0
+        IsVIP: this.editCustomerForm.value.IsVIP == true ? 1 : 0,
+        IsPoliticallyExposed: this.editCustomerForm.value.IsPoliticallyExposed == true ? 1 : 0
       });
 
     this.isLoading = true;

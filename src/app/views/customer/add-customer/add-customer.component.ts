@@ -97,6 +97,7 @@ export class AddCustomerComponent implements OnInit {
       IsSmoker: [0],
       IsFemaleRebate: [0],
       IsVIP: [0],
+      IsPoliticallyExposed: [0],
       RegisterDate: ['']
     });
 
@@ -117,7 +118,8 @@ export class AddCustomerComponent implements OnInit {
         IsAgeAdmitted: this.addCustomerForm.value.IsAgeAdmitted == true ? 1 : 0,
         IsSmoker: this.addCustomerForm.value.IsSmoker == true ? 1 : 0,
         IsFemaleRebate: this.addCustomerForm.value.IsFemaleRebate == true ? 1 : 0,
-        IsVIP: this.addCustomerForm.value.IsVIP == true ? 1 : 0
+        IsVIP: this.addCustomerForm.value.IsVIP == true ? 1 : 0,
+        IsPoliticallyExposed: this.addCustomerForm.value.IsPoliticallyExposed == true ? 1 : 0
       });
 
 

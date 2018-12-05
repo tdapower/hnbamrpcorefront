@@ -364,7 +364,15 @@ export class GenerateMedicalletterComponent implements OnInit {
         url = URL_CONST.DOC_SERVER_URL_PREFIX + 'api/MedicalLetter/GetMedicalLetterNonCreditDocument/' + this.medicalLetterId;
         this.MedicalLetterDocURL = this.sanitizer.bypassSecurityTrustResourceUrl(url);
         document.getElementById("openMedicalLetterModalButton").click();
+      } else if (this.medicalletterForm.value.LetterType == "Further-Medical") {
+        let url: any;
+        url = URL_CONST.DOC_SERVER_URL_PREFIX + 'api/MedicalLetter/GetFurtherMedicalLetterDocument/' + this.medicalLetterId;
+        this.MedicalLetterDocURL = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        document.getElementById("openMedicalLetterModalButton").click();
       }
+
+
+
     }
 
 

@@ -19,7 +19,7 @@
               <label class="col-md-3 col-form-label" for="nic">NIC</label>
               <div class="col-md-9">
                 <input type="text" id="nic" name="nic" class="form-control" placeholder="NIC" formControlName="NIC"
-                  (blur)="ExtractDataFromNIC()"  autocomplete="nic" >
+                  (blur)="ExtractDataFromNIC()" autocomplete="nic">
               </div>
             </div>
 
@@ -37,7 +37,7 @@
               <label class="col-md-3 col-form-label" for="age">Age</label>
               <div class="col-md-9">
                 <input type="text" id="age" name="Age" class="form-control" placeholder="Name" formControlName="Age"
-                [readonly]="true">
+                  [readonly]="true">
 
               </div>
             </div>
@@ -131,7 +131,7 @@
               <label class="col-md-3 col-form-label" for="bmi">BMI</label>
               <div class="col-md-3">
                 <input type="number" id="bmi" name="bmi" class="form-control" placeholder="BMI" formControlName="BMI"
-                [readonly]="true">
+                  [readonly]="true">
 
               </div>
 
@@ -193,22 +193,33 @@
 
             </div>
 
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="IsPoliticallyExposed">Is politically exposed person</label>
+              <div class="col-md-3">
+                <label class="switch switch-label switch-pill switch-primary">
+                  <input type="checkbox" class="switch-input" formControlName="IsPoliticallyExposed" id="IsPoliticallyExposed">
+                  <span class="switch-slider" data-checked="Yes" data-unchecked="No"></span>
+                </label>
+              </div>
 
+
+            </div>
 
 
 
           </div>
           <div class="card-footer">
-           
 
-            <button class="btn btn-primary btn-ladda"  (click)="onSubmit()" data-style="contract-overlay" style="z-index: 10;" [ladda]='isLoading'>Submit</button>
+
+            <button class="btn btn-primary btn-ladda" (click)="onSubmit()" data-style="contract-overlay" style="z-index: 10;"
+              [ladda]='isLoading'>Submit</button>
 
             <button type="reset" class="btn btn-danger"><i class="fa fa-ban"></i> Reset</button>
 
           </div>
         </form>
 
-       
+
       </div>
 
     </div>

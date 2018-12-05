@@ -21,5 +21,6 @@ export class Customer {
     IsSmoker:  number;
     IsFemaleRebate:number  ;
     IsVIP:  number;
+    IsPoliticallyExposed:  number;
     RegisterDate: string ;
 }
