@@ -20,8 +20,24 @@
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="name">Proposal Number</label>
               <div class="col-md-9">
-                <input type="text" id="ProposalNo" name="ProposalNo" class="form-control" placeholder="Proposal Number"
-                  formControlName="ProposalNo">
+                <!-- <input type="text" id="ProposalNo" name="ProposalNo" class="form-control" placeholder="Proposal Number"
+                  formControlName="ProposalNo"> -->
+
+
+                  <div class="input-group">
+                     
+                      <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Proposal"
+                        formControlName="ProposalNo"  [readonly]="true">
+
+                        <span class="input-group-prepend">
+                            <button type="button" class="btn btn-primary" (click)="searchProposalModal.show()"><i class="fa fa-search"></i>
+                              Search Proposal</button>
+                          </span>
+
+                    </div>
+
+
+
               </div>
             </div>
 
@@ -127,7 +143,9 @@
           <div class="card-footer">
             <button class="btn btn-sm btn-primary" (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i> Submit</button>
             <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-
+            <button type="button" class="btn btn-success" data-toggle="modal" (click)="successModal.show()" id="openModel" name="openModel" hidden>
+              Success modal
+            </button>
           </div>
         </form>
 
@@ -170,3 +188,157 @@
 </div>
 
 <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+
+<div bsModal #successModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-success" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Job Number</h4>
+        <button type="button" class="close" (click)="successModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align:center">
+            <h1>{{createdJobNumber}}</h1>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="successModal.hide()">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<div bsModal #searchProposalModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Search Proposal</h4>
+        <button type="button" class="close" (click)="searchProposalModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <form class="form-horizontal" [formGroup]="searchProposalForm">
+                <div class="card-header">
+                  <strong>Search Proposals</strong>
+                </div>
+                <div class="card-body">
+
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="hf-password">Quotation No</label>
+                    <div class="col-md-9">
+                      <input type="text" id="QuotationNo" name="QuotationNo" class="form-control" formControlName="QuotationNo">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="hf-email">Proposal No</label>
+                    <div class="col-md-9">
+                      <input type="text" id="ProposalNo" name="ProposalNo" class="form-control" formControlName="ProposalNo">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="hf-password">Bank</label>
+                    <div class="col-md-9">
+                      <select id="BankId" name="BankId" class="form-control" formControlName="BankId">
+                        <option value="0">Please select</option>
+                        <option *ngFor="let bank of banks" value={{bank.BankId}}>{{bank.BankName}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="hf-password">Hnba Branch Code</label>
+                    <div class="col-md-9">
+                      <select id="HnbaBranchCode" name="HnbaBranchCode" class="form-control" formControlName="HnbaBranchCode">
+                        <option value="0">Please select</option>
+                        <option *ngFor="let hnbaBranch of hnbaBranches" value={{hnbaBranch.HnbaCode}}>{{hnbaBranch.HnbaBranchName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="hf-password">Loan Type</label>
+                    <div class="col-md-9">
+                      <select id="LoanTypeId" name="LoanTypeId" class="form-control" formControlName="LoanTypeId">
+                        <option value="0">Please select</option>
+                        <option *ngFor="let loanType of loanTypes" value={{loanType.LoanTypeId}}>{{loanType.LoanTypeName}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <div class="card-footer">
+                  <button class="btn btn-sm btn-primary" (click)="onProposalSearchSubmit()"><i class="fa fa-dot-circle-o"></i>
+                    Search</button>
+                  <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <i class="fa fa-align-justify"></i> Seacrh Result
+              </div>
+              <div class="card-body">
+                <table class="table table-striped" [mfData]="proposaldata" #mf2="mfDataTable" [mfRowsOnPage]="5">
+                  <thead>
+                    <tr>
+
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="QuotationNo">Quotation No</mfDefaultSorter>
+                      </th>
+
+                      <th style="width: 30%">
+                        <mfDefaultSorter by="ProposalNo">Proposal No</mfDefaultSorter>
+                      </th>
+                      <th style="width: 10%">
+                        Edit
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let main of mf2.data">
+                      <td>{{ main.QuotationNo }}</td>
+                      <td>{{ main.ProposalNo }}</td>
+                      <td><a (click)="onProposaSelectSubmit(main.SeqId, main.ProposalNo )" class="btn btn-primary">Select</a></td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="searchProposalModal.hide()">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

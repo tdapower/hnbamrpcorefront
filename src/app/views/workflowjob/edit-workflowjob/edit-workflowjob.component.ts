@@ -17,6 +17,10 @@ import { MRPUser } from '../../common-functions/models/mrpUser.model';
 import { EditWorkflowjobService } from './edit-workflowjob.service';
 import { CommonFunctionsService } from '../../common-functions/common-functions.service';
 import { WorkflowjobService } from '../workflowjob.service';
+import { SearchProposal } from '../../proposal/models/searchProposal.model';
+import { SearchProposalService } from '../../proposal/search-proposal/search-proposal.service';
+import { HnbaBranch } from '../../common-functions/models/hnbaBranch.model';
+import { LoanType } from '../../common-functions/models/loanType.model';
 
 @Component({
   selector: 'app-edit-workflowjob',
@@ -43,6 +47,8 @@ export class EditWorkflowjobComponent implements OnInit {
 
   workflowJobForm: FormGroup;
 
+  createdJobNumber: string = '';
+
   banks: Bank[];
   bankBranches: BankBranch[];
   brokers: Broker[];
@@ -50,11 +56,22 @@ export class EditWorkflowjobComponent implements OnInit {
   modeOfProposals: ModeOfProposal[];
   mRPUsers: MRPUser[];
 
+  hnbaBranches: HnbaBranch[];
+  loanTypes: LoanType[];
+
+
+  public data;
+
+  searchProposal: SearchProposal;
+  searchProposalForm: FormGroup;
+
+  public proposaldata;
+
 
   constructor(private formBuilder: FormBuilder, private editWorkflowjobService: EditWorkflowjobService,
     private workflowjobService: WorkflowjobService, private commonFunctionsService: CommonFunctionsService,
-     toasterService: ToasterService, private route: ActivatedRoute,
-     private router: Router) {
+    toasterService: ToasterService, private route: ActivatedRoute,
+    private router: Router, private searchProposalService: SearchProposalService) {
     this.toasterService = toasterService;
   }
 
@@ -74,6 +91,8 @@ export class EditWorkflowjobComponent implements OnInit {
     this.getMRPUsers();
     this.getPendingJobsOfUsers();
 
+    this.getHnbaBranches();
+    this.getLoanTypes();
     this.onChanges();
 
     this.route.params.subscribe(params => {
@@ -129,9 +148,27 @@ export class EditWorkflowjobComponent implements OnInit {
       BankBranchId: [0]
     });
 
+    this.searchProposalForm = this.formBuilder.group({
+      QuotationNo: [''],
+      ProposalNo: [''],
+      BankId: [0],
+      HnbaBranchCode: [''],
+      LoanTypeId: [0],
+      Life1NIC: [''],
+      Life1Name: [''],
+      Life2NIC: [''],
+      Life2Name: ['']
+    });
 
   }
 
+  public toInt(num: string) {
+    return +num;
+  }
+
+  public sortByWordLength = (a: any) => {
+    return a.name.length;
+  }
 
 
   onSubmit() {
@@ -142,11 +179,13 @@ export class EditWorkflowjobComponent implements OnInit {
         IsFreeCoverLimitProposal: this.workflowJobForm.value.IsFreeCoverLimitProposal == true ? 1 : 0
       });
 
-console.log('this.workflowJobForm.valu   '+ JSON.stringify(this.workflowJobForm.value));
+    console.log('this.workflowJobForm.valu   ' + JSON.stringify(this.workflowJobForm.value));
 
 
     this.editWorkflowjobService.updateWorkflowJob(this.workflowJobForm.value)
       .subscribe(data => {
+        
+
         this.showToasterMessage('success', 'Notification', 'Workflow Job successfully updated!');
 
         this.initializeForm();
@@ -218,6 +257,21 @@ console.log('this.workflowJobForm.valu   '+ JSON.stringify(this.workflowJobForm.
     //     },
     //     errorCode => this.showToasterMessage('error', 'Notification', 'Error Loading Pending jobs of User!'));
   }
+  getHnbaBranches() {
+    this.commonFunctionsService.getHnbaBranch()
+      .subscribe(
+        data => this.hnbaBranches = data,
+        errorCode => this.showToasterMessage('error', 'Notification', 'Error Loading HNBA Branches!'));
+  }
+
+  getLoanTypes() {
+    this.commonFunctionsService.getLoanType()
+      .subscribe(
+        data => this.loanTypes = data,
+        errorCode => this.showToasterMessage('error', 'Notification', 'Error Loading Loan Types!'));
+  }
+
+
 
 
   onChanges(): void {
@@ -231,6 +285,33 @@ console.log('this.workflowJobForm.valu   '+ JSON.stringify(this.workflowJobForm.
   }
 
 
+  onProposalSearchSubmit() {
+    this.searchProposal = new SearchProposal();
+    this.searchProposal.QuotationNo = this.searchProposalForm.value.QuotationNo;
+    this.searchProposal.ProposalNo = this.searchProposalForm.value.ProposalNo;
+    this.searchProposal.BankId = this.searchProposalForm.value.BankId;
+    this.searchProposal.HnbaBranchCode = this.searchProposalForm.value.HnbaBranchCode;
+    this.searchProposal.LoanTypeId = this.searchProposalForm.value.LoanTypeId;
+    this.searchProposal.Life1NIC = this.searchProposalForm.value.Life1NIC;
+    this.searchProposal.Life1Name = this.searchProposalForm.value.Life1Name;
+    this.searchProposal.Life2NIC = this.searchProposalForm.value.Life2NIC;
+    this.searchProposal.Life2Name = this.searchProposalForm.value.Life2Name;
+
+
+    this.searchProposalService.SearchUnassignedProposal(this.searchProposal)
+      .subscribe(
+        data => this.proposaldata = data,
+        errorCode => this.showToasterMessage('error', 'Notification', 'Error Loading Proposal!'));
+
+  }
+
+  onProposaSelectSubmit(seqId, proposalNo) {
+    this.workflowJobForm.patchValue(
+      {
+        ProposalNo: proposalNo
+      });
+
+  }
 
   showToasterMessage(type, title, message) {
     this.toasterService.pop(type, title, message);

@@ -9,10 +9,10 @@ import { LoginComponent } from './views/login/login.component';
 import { AuthGuard } from './authGuard';
 
 export const routes: Routes = [
-  { 
-    path: '', 
-    component: DefaultLayoutComponent, 
-    canActivate: [AuthGuard] 
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',
@@ -20,7 +20,7 @@ export const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
-  
+
   {
     path: 'login',
     component: LoginComponent,
@@ -31,7 +31,7 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    canActivate: [AuthGuard] ,
+    canActivate: [AuthGuard],
     data: {
       title: 'Home'
     },
@@ -44,12 +44,12 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
       },
-      
+
       {
         path: 'forms',
         loadChildren: './views/forms/forms.module#FormsModule'
       },
-   
+
       {
         path: 'customer',
         loadChildren: './views/customer/customer.module#CustomerModule'
@@ -61,21 +61,25 @@ export const routes: Routes = [
       {
         path: 'workflowjob',
         loadChildren: './views/workflowjob/workflowjob.module#WorkflowjobModule'
-      }, 
+      },
       {
         path: 'medicalletter',
         loadChildren: './views/medicalletter/medicalletter.module#MedicalletterModule'
-      }, 
-       {
+      },
+      {
         path: 'proposal',
         loadChildren: './views/proposal/proposal.module#ProposalModule'
       },
+      {
+        path:'employee',
+        loadChildren:'./views/employee/employee.module#EmployeeModule'
+      }
     ]
   }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

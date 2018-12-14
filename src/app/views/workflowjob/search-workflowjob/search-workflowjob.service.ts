@@ -33,6 +33,17 @@ export class SearchWorkflowjobService {
 
 
 
+  getUnassWorkflowJobs(): Observable<Workflowjob[]> {
+
+    let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
+    ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
+    let options = new RequestOptions({ headers: ReqHeaders });
+
+    return this.http.get(URL_CONST.URL_PREFIX + 'api/WorkflowJob/GetUnassWorkflowJobs', options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
 
 
   private extractData(res: Response) {

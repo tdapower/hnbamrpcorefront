@@ -115,9 +115,7 @@ export const navItems = [
       }
     ]
   }
- 
   ,
-  
   {
     name: 'Proposal',
     url: '/proposal',
@@ -127,6 +125,24 @@ export const navItems = [
         name: 'Search Proposal',
         url: '/proposal/search-proposal',
         icon: 'icon-plus'
+      },
+      {
+        name: 'Update Proposal',
+        url: '/proposal/update-proposal',
+        icon: 'icon-plus'
+      }
+    ]
+  },
+
+  {
+    name:'Employee',
+    url:'/employee',
+    icon:'icon-people',
+    children:[
+      {
+        name:'Add Employee',
+        url:'/employee/add-employee',
+        icon:'icon-plus'
       }
     ]
   }

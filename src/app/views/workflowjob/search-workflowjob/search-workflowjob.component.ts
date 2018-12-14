@@ -26,7 +26,9 @@ export class SearchWorkflowjobComponent implements OnInit {
 
   mRPUsers: MRPUser[];
   public data;
-
+  
+  public unassignedData;
+  
 
   constructor(private http: Http, private searchWorkflowjobService: SearchWorkflowjobService, toasterService: ToasterService,
     private formBuilder: FormBuilder, private commonFunctionsService: CommonFunctionsService) {
@@ -48,6 +50,8 @@ export class SearchWorkflowjobComponent implements OnInit {
 
     this.initializeForm();
     this.getMRPUsers();
+
+    this. loadUnassignedJobs();
   }
 
 
@@ -97,6 +101,15 @@ export class SearchWorkflowjobComponent implements OnInit {
 
   }
 
+  loadUnassignedJobs() {
+    
+
+    this.searchWorkflowjobService.getUnassWorkflowJobs()
+      .subscribe(
+        data => this.unassignedData = data,
+        errorCode => this.showToasterMessage('error', 'Notification', 'Error Loading Workflow Jobs!'));
+
+  }
 
 
 

@@ -11,6 +11,10 @@ const routes: Routes = [
       {
         path: 'search-proposal',
         loadChildren: './search-proposal/search-proposal.module#SearchProposalModule'
+      },
+      {
+        path: 'update-proposal',
+        loadChildren: './update-proposal/update-proposal.module#UpdateProposalModule'
       }
     ]
   }

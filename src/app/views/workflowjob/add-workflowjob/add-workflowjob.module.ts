@@ -12,6 +12,10 @@ import { WorkflowjobModule } from '../workflowjob.module';
 import { AddWorkflowjobComponent } from './add-workflowjob.component';
 import { DataTableModule } from 'angular2-datatable';
 
+
+// Modal Component
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 @NgModule({
   imports: [
     AddWorkflowjobRoutingModule,
@@ -25,7 +29,8 @@ import { DataTableModule } from 'angular2-datatable';
     FormsModule,
     ReactiveFormsModule,
     ToasterModule,
-    DataTableModule
+    DataTableModule,
+    ModalModule.forRoot()
   ],
   declarations: [AddWorkflowjobComponent]
 })

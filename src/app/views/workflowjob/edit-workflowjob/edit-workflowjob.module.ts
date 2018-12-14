@@ -3,13 +3,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDatepickerModule, ModalModule } from 'ngx-bootstrap';
 import { SelectModule } from 'ng-select';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ToasterModule, ToasterService} from 'angular2-toaster/angular2-toaster';
 import { EditWorkflowjobComponent } from './edit-workflowjob.component';
 import { EditWorkflowjobRoutingModule } from './edit-workflowjob-routing.module';
 import { WorkflowjobModule } from '../workflowjob.module';
+import { DataTableModule } from 'angular2-datatable';
 
 @NgModule({
   imports: [
@@ -23,7 +24,9 @@ import { WorkflowjobModule } from '../workflowjob.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ToasterModule
+    ToasterModule,
+    ModalModule.forRoot(),
+    DataTableModule
   ],
   declarations: [EditWorkflowjobComponent]
 })

@@ -18,8 +18,6 @@ export class SearchProposalService {
   constructor(private http: Http) { }
 
 
-
-
   searchProposal(searchProposal: SearchProposal): Observable<Main[]> {
 
     let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
@@ -27,6 +25,19 @@ export class SearchProposalService {
     let options = new RequestOptions({ headers: ReqHeaders });
 
     return this.http.post(URL_CONST.URL_PREFIX + 'api/Main/SearchMainData', searchProposal, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+
+
+  SearchUnassignedProposal(searchProposal: SearchProposal): Observable<Main[]> {
+
+    let ReqHeaders = new Headers({ 'Content-Type': 'application/json' });
+    ReqHeaders.append('Authorization', CurrentUser.USER_AUTH_TOKEN);
+    let options = new RequestOptions({ headers: ReqHeaders });
+
+    return this.http.post(URL_CONST.URL_PREFIX + 'api/Main/SearchUnassignedMainData', searchProposal, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
